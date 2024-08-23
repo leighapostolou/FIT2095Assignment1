@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const ejs = require('ejs');
-const VIEWS_PATH = path.join(__dirname, "/views/"); //might not need this?
+const VIEWS_PATH = path.join(__dirname, "/views/");
 //import the driver route
 const driverRouter = require('./routes/driver');
 //import the package route
@@ -25,11 +25,13 @@ app.use('/31458483/vasleigh', packageRouter);
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 
+app.use(express.static("public/images"));
+
 //1. Route Table - the following code lists all my endpoints the project listens to
 app.get("/", function(req, res){
     let fileName = VIEWS_PATH + "index.html"
     console.log(fileName);
-    res.sendFile(fileName);
+    res.render("index");
 }); //index.html page i.e. home page
 
 app.get("/31458483/vasleigh/adddriver", function(req, res){
@@ -73,5 +75,3 @@ app.get("***", function(req, res){
     console.log(fileName);
     res.sendFile(fileName);
 }); //pageNotFound.html page i.e. user will be sent to this page if they enter invalid URL endpoint
-
-app.use(express.static("public/images"));

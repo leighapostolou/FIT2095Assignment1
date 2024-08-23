@@ -18,9 +18,17 @@ router.post('/adddriver', (req, res) => {
     let aDriverDepartment = req.body.driver_department;
     let aDriverLicence = req.body.driver_licence;
     let aIsActive = req.body.driver_isActive;
-    let aDriverCreatedAt = req.body.driver_createdAt;
+    let aDriverCreatedAt = new Date().toISOString();
     //generate a random ID for new entries 
-    let driver_id = Math.round(Math.random()*1000);
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    const randomNumbers = Math.round(Math.random()*90)+10;
+
+    let randomLetters = '';
+    for (let i=0; i<3; i++){
+        randomLetters += letters[Math.floor(Math.random()*letters.length)];
+    }
+    let driver_id = `D${randomNumbers}-31-${randomLetters}`;
     //create an object for the driver with id, name, dpeartment, licence, and active status
     let obj = {driver_id:driver_id, driver_name: aDriverName, driver_department: aDriverDepartment, driver_licence: aDriverLicence, driver_isActive: aIsActive, driver_createdAt: aDriverCreatedAt};
     dbDriver.push(obj);
@@ -31,6 +39,17 @@ router.post('/adddriver', (req, res) => {
 //route for "/listAllDrivers"
 router.get("/listalldrivers", (req, res) => {
     res.render("listAllDrivers.html", {dbDriver: dbDriver});
+});
+
+// Handle POST request to delete a driver by ID
+router.post('/deletedriver', (req, res) => {
+    let driver_id = req.body.driver_id;
+
+    // Remove the driver with the given ID from the dbDriver array
+    dbDriver = dbDriver.filter(driver => driver.driver_id !== driver_id);
+
+    // Redirect to the list of drivers
+    res.redirect("/31458483/vasleigh/listalldrivers");
 });
 
 module.exports = router;

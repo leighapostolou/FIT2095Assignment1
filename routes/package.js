@@ -18,12 +18,21 @@ router.post('/addpackage', (req, res) => {
     let aPackageWeight = req.body.package_weight;
     let aPackageDestination = req.body.package_destination;
     let aDescription = req.body.description;
+    let aCreatedAt = new Date().toISOString();
     let aIsAllocated = req.body.isAllocated;
     let aDriverID = req.body.driver_id;
     //generate a random ID for new entries 
-    let package_id = Math.round(Math.random()*1000);
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    
+    const randomPackageNumbers = Math.round(Math.random()*1000);
+
+    let randomLetters = '';
+    for (let i=0; i<2; i++){
+        randomLetters += letters[Math.floor(Math.random()*letters.length)];
+    }
+    let package_id = `P${randomLetters}-VA-${randomPackageNumbers}`;
     //create an object for the driver with id, name, dpeartment, licence, and active status
-    let obj = {package_id:package_id, package_title: aPackageTitle, package_weight: aPackageWeight, package_destination: aPackageDestination, description: aDescription, isAllocated: aIsAllocated, driver_id: aDriverID};
+    let obj = {package_id:package_id, package_title: aPackageTitle, package_weight: aPackageWeight, package_destination: aPackageDestination, description: aDescription, createdAt: aCreatedAt, isAllocated: aIsAllocated, driver_id: aDriverID};
     dbPackage.push(obj);
     //send the user back to "/listallpackages"
     res.redirect("/31458483/vasleigh/listallpackages");

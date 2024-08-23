@@ -13,13 +13,11 @@
                 <!-- Input: Driver Department -->
                 <div>
                     <label for="driver_department" class="'form-label">Department</label>
-                    <!-- <input type="text" name="driver_department" id="driver_department" class="form-control form-control-sm" required> -->
-                     <input type="radio" name="department" value="Food" class="form-control form-control-sm">
-                     <label for="department_food">Food</label><br>
-                     <input type="radio" name="department" value="Furniture" class="form-control form-control-sm">
-                     <label for="department_furniture">Furniture</label><br>
-                     <input type="radio" name="department" value="Electronic" class="form-control form-control-sm"> 
-                     <label for="department_electrionic">Electronic</label><br>
+                     <select name="driver_department" id="driver_department" class="form-control form-control-sm" required>
+                        <option value="Food">Food</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Electrionic">Electrionic</option>
+                     </select>
                 </div>
 				<!-- Input: Driver Licence -->
 				<div>
@@ -30,11 +28,6 @@
 				<div>
                     <label for="driver_isActive" class="'form-label">Active Status</label>
                     <input type="checkbox" name="driver_isActive" id="driver_isActive" value="Yes" class="form-control form-control-sm">
-                </div>
-                <!-- Auto Input: Driver Creation Date -->
-				<div>
-                    <label for="driver_createdAt" class="'form-label">Creation Date</label>
-                    <input type="date" name="driver_createdAt" id="driver_createdAt" class="form-control form-control-sm">
                 </div>
                 <button type="submit" class="btn btn-primary">submit</button>
             </form>

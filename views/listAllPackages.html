@@ -12,6 +12,7 @@
                     <th>Weight</th>
                     <th>Destination</th>
                     <th>Description</th>
+                    <th>Creation Date</th>
                     <th>Allocation Status</th>
                     <th>Driver ID</th>
                 </tr>
@@ -41,6 +42,10 @@
                     <td> 
                         <%= dbPackage[i].description %>
                     </td>
+                    <!-- Creation Date -->
+                     <td>
+                        <%= new Date(dbPackage[i].createdAt).toLocaleDateString() %>
+                     </td>
                     <!-- Allocation Status -->
                     <td> 
                         <%= dbPackage[i].isAllocated %>

@@ -40,7 +40,7 @@
                     </td>
                     <!-- Driver createdAt -->
                     <td>
-                        <%= dbDriver[i].driver_createdAt %>
+                        <%= new Date(dbDriver[i].driver_createdAt).toLocaleDateString() %>
                     </td>
                 </tr>
                 <%}%>
