@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <h1>Add New Driver</h1>
+    </head>
+    <body>
+        <div class="container"> 
+            <form action="/31458483/vasleigh/adddriver" method="post">
+                <!-- Input: Driver Name -->
+                <div class="mb-3">
+                    <label for="driver_name" class="'form-label">Name</label>
+                    <input type="text" name="driver_name" id="driver_name" minlength="3" maxlength="20" class="form-control form-control-sm" required pattern="[a-zA-Z]+">
+                </div>
+                <!-- Input: Driver Department -->
+                <div>
+                    <label for="driver_department" class="'form-label">Department</label>
+                    <!-- <input type="text" name="driver_department" id="driver_department" class="form-control form-control-sm" required> -->
+                     <input type="radio" name="department" value="Food" class="form-control form-control-sm">
+                     <label for="department_food">Food</label><br>
+                     <input type="radio" name="department" value="Furniture" class="form-control form-control-sm">
+                     <label for="department_furniture">Furniture</label><br>
+                     <input type="radio" name="department" value="Electronic" class="form-control form-control-sm"> 
+                     <label for="department_electrionic">Electronic</label><br>
+                </div>
+				<!-- Input: Driver Licence -->
+				<div>
+                    <label for="driver_licence" class="'form-label">Licence</label>
+                    <input type="text" name="driver_licence" id="driver_licence" minlength="5" maxlength="5" class="form-control form-control-sm" required pattern="[a-zA-Z0-9]+">
+                </div>
+				<!-- Input: Driver Active Status -->
+				<div>
+                    <label for="driver_isActive" class="'form-label">Active Status</label>
+                    <input type="checkbox" name="driver_isActive" id="driver_isActive" value="Yes" class="form-control form-control-sm">
+                </div>
+                <!-- Auto Input: Driver Creation Date -->
+				<div>
+                    <label for="driver_createdAt" class="'form-label">Creation Date</label>
+                    <input type="date" name="driver_createdAt" id="driver_createdAt" class="form-control form-control-sm">
+                </div>
+                <button type="submit" class="btn btn-primary">submit</button>
+            </form>
+        </div>
+    </body>
+</html>

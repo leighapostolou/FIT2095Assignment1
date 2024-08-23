@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <h1>List of All Drivers</h1>
+        <link rel="stylesheet" href="/bootstrap.min.css">
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Driver ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+					<th>Licence</th>
+					<th>Active</th>
+                    <th>Creation Date</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <% for(let i=0; i<dbDriver.length; i++) {%>
+                <tr>
+                    <!-- Driver ID -->
+                     <td>
+                        <%= dbDriver[i].driver_id %>
+                     </td>
+                    <!-- Driver name -->
+                    <td> 
+                        <%= dbDriver[i].driver_name %>
+                    </td>
+                    <!-- Driver department -->
+                    <td>
+                        <%= dbDriver[i].driver_department %>
+                    </td>
+					<!-- Driver licence -->
+                    <td>
+                        <%= dbDriver[i].driver_licence %>
+                    </td>
+					<!-- Driver isActive -->
+                    <td>
+                        <%= dbDriver[i].driver_isActive %>
+                    </td>
+                    <!-- Driver createdAt -->
+                    <td>
+                        <%= dbDriver[i].driver_createdAt %>
+                    </td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </body>
+</html>

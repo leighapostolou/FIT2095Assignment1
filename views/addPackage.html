@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <h1>Add New Package</h1>
+    </head>
+    <body>
+        <div class="container"> 
+            <form action="/31458483/vasleigh/addpackage" method="post">
+                <!-- Input: Package Title -->
+                <div class="mb-3">
+                    <label for="package_title" class="'form-label">Title</label>
+                    <input type="text" name="package_title" id="package_title" minlength="3" maxlength="15" class="form-control form-control-sm" required pattern="[a-zA-Z0-9]+">
+                </div>
+                <!-- Input: Package Weight -->
+                <div>
+                    <label for="package_weight" class="'form-label">Weight (Grams)</label>
+                    <input type="number" name="package_weight" id="package_weight" min="1" class="form-control form-control-sm" required>
+                </div>
+				<!-- Input: Package Destination -->
+				<div>
+                    <label for="package_destination" class="'form-label">Destination</label>
+                    <input type="text" name="package_destination" id="package_destination" minlength="5" maxlength="15" class="form-control form-control-sm" required pattern="[a-zA-Z0-9]+">
+                </div>
+				<!-- Input: Description -->
+				<div>
+                    <label for="description" class="'form-label">Description</label>
+                    <input type="text" name="description" id="description" maxlength="30" class="form-control form-control-sm">
+                </div>
+				<!-- Input: isAllocated -->
+				<div>
+                    <label for="isAllocated" class="'form-label">Allocation Status</label>
+                    <input type="checkbox" name="isAllocated" id="isAllocated" value="Yes" class="form-control form-control-sm">
+                </div>
+				<!-- Input: Driver ID -->
+				<div>
+                    <label for="driver_id" class="'form-label">Driver ID</label>
+                    <input type="text" name="driver_id" id="driver_id" class="form-control form-control-sm" minlength="10" maxlength="10" required>
+                </div>
+                <button type="submit" class="btn btn-primary">submit</button>
+            </form>
+        </div>
+    </body>
+</html>

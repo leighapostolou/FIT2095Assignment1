@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <h1>List of All Packages</h1>
+        <link rel="stylesheet" href="/bootstrap.min.css">
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Package ID</th>
+                    <th>Title</th>
+                    <th>Weight</th>
+                    <th>Destination</th>
+                    <th>Description</th>
+                    <th>Allocation Status</th>
+                    <th>Driver ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <% %> called Logic tags: To execute the JS code, but not rendered in the HTML--> 
+                <!-- <%= %> called Output tags: To show the output of JS Expressions in the HTML--> 
+                <% for(let i=0; i<dbPackage.length; i++) {%>
+                <tr>
+                    <!-- Package ID -->
+                    <td>
+                        <%= dbPackage[i].package_id %>
+                    </td>
+                    <!-- Package Title -->
+                    <td> 
+                        <%= dbPackage[i].package_title %>
+                    </td>
+                    <!-- Package Weight -->
+                    <td> 
+                        <%= dbPackage[i].package_weight %>
+                    </td>
+                    <!-- Package Destination -->
+                    <td> 
+                        <%= dbPackage[i].package_destination %>
+                    </td>
+                    <!-- Description -->
+                    <td> 
+                        <%= dbPackage[i].description %>
+                    </td>
+                    <!-- Allocation Status -->
+                    <td> 
+                        <%= dbPackage[i].isAllocated %>
+                    </td>
+                    <!-- Driver ID -->
+                    <td> 
+                        <%= dbPackage[i].driver_id %>
+                    </td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </body>
+</html>
