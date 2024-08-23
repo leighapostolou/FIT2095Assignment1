@@ -15,7 +15,6 @@ app.listen(8080);
 //middleware to parse the form content
 app.use(express.urlencoded({extended: true}));
 
-//loaf the static module
 app.use(express.static("node_modules/bootstrap/dist/css"));
 
 app.use('/31458483/vasleigh', driverRouter);
@@ -69,6 +68,12 @@ app.get("/31458483/vasleigh/deletepackage", function(req, res){
     console.log(fileName);
     res.sendFile(fileName);
 }); //deletePackage.html page i.e. page to delete a package
+
+app.get("/31458483/vasleigh/invaliddata", function(req, res){
+    let fileName = VIEWS_PATH + "invalidData.html"
+    console.log(fileName);
+    res.sendFile(fileName);
+}); //invalidData.html page i.e. user will be sent to this page if they enter invalid data into a form
 
 app.get("***", function(req, res){
     let fileName = VIEWS_PATH + "pageNotFound.html"

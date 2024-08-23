@@ -3,15 +3,22 @@ const express = require('express');
 const router = express.Router(); 
 const path = require('path');
 
+//driver class
+class driver{
+    constructor() {
+        this.driver_id = driver_id;
+        this.driver_name = driver_name;
+        this.driver_department = driver_department;
+        this.driver_licence = driver_licence;
+        this.driver_isActive = driver_isActive;
+        this.driver_createdAt = new Date(driver_createdAt);
+    }
+}
+
 //create an array
 let dbDriver = [];
 
-//Send the addDriver.html file
-router.get('/adddriver', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/addDriver.html'));
-});
-
-// get the data from the form
+//get the data from the form
 router.post('/adddriver', (req, res) => {
     //retrive the content from the request body of the form
     let aDriverName = req.body.driver_name;
@@ -21,9 +28,7 @@ router.post('/adddriver', (req, res) => {
     let aDriverCreatedAt = new Date().toISOString();
     //generate a random ID for new entries 
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
     const randomNumbers = Math.round(Math.random()*90)+10;
-
     let randomLetters = '';
     for (let i=0; i<3; i++){
         randomLetters += letters[Math.floor(Math.random()*letters.length)];
@@ -41,14 +46,18 @@ router.get("/listalldrivers", (req, res) => {
     res.render("listAllDrivers.html", {dbDriver: dbDriver});
 });
 
-// Handle POST request to delete a driver by ID
+//delete a driver by ID
 router.post('/deletedriver', (req, res) => {
     let driver_id = req.body.driver_id;
-
-    // Remove the driver with the given ID from the dbDriver array
-    dbDriver = dbDriver.filter(driver => driver.driver_id !== driver_id);
-
-    // Redirect to the list of drivers
+    //check if the driver ID exists
+    const driverIdCheck = dbDriver.findIndex(driver => driver.driver_id === driver_id);
+    if (driverIdCheck === -1) {
+        //send user to "invalid data" page if input is invalid
+        return res.redirect('/31458483/vasleigh/invaliddata');
+    }
+    //delete driver from dbDriver array
+    dbDriver.splice(driverIdCheck, 1);
+    //send user to listAllDrivers.html
     res.redirect("/31458483/vasleigh/listalldrivers");
 });
 

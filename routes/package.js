@@ -3,15 +3,20 @@ const express = require('express');
 const router = express.Router(); 
 const path = require('path');
 
+//package class
+class Package{
+    constructor() {
+        this.package_id = package_id;
+        this.package_name = package_name;
+        this.package_description = package_description;
+        this.package_createdAt = new Date(package_createdAt); // Ensure the date is a Date object
+    }
+}
+
 //create an array
 let dbPackage = [];
 
-//Send the addPackage.html file
-router.get('/addpackage', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/addPackage.html'));
-});
-
-// get the data from the form
+//get the data from the form
 router.post('/addpackage', (req, res) => {
     //retrive the content from the request body of the form
     let aPackageTitle = req.body.package_title;
@@ -23,9 +28,7 @@ router.post('/addpackage', (req, res) => {
     let aDriverID = req.body.driver_id;
     //generate a random ID for new entries 
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
     const randomPackageNumbers = Math.round(Math.random()*1000);
-
     let randomLetters = '';
     for (let i=0; i<2; i++){
         randomLetters += letters[Math.floor(Math.random()*letters.length)];
@@ -41,6 +44,21 @@ router.post('/addpackage', (req, res) => {
 //route for "/listAllPackages"
 router.get("/listallpackages", (req, res) => {
     res.render("listAllPackages.html", {dbPackage: dbPackage});
+});
+
+//delete package by ID
+router.post('/deletepackage', (req, res) => {
+    let package_id = req.body.package_id;
+    //check if package ID exists
+    const packageIdCheck = dbPackage.findIndex(package => package.package_id === package_id);
+    if (packageIdCheck === -1) {
+        //send user to "invalid data" page if ID is not found
+        return res.redirect('/31458483/vasleigh/invaliddata');
+    }
+    //delete package from dbPackage array
+    dbPackage.splice(packageIdCheck, 1);
+    //send user to listAllPackages.html
+    res.redirect("/31458483/vasleigh/listallpackages");
 });
 
 module.exports = router;
